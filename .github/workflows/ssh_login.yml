@@ -1,0 +1,24 @@
+name: SSH Login Every 3 Days
+
+# 定义触发条件：每三天触发一次
+on:
+  schedule:
+    - cron: '0 0 */3 * *'  # 每三天的 00:00 触发
+
+jobs:
+  ssh-login:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
+    - name: SSH into server
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} "echo 'Logged in via GitHub Action'"
