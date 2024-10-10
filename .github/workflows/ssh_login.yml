@@ -4,6 +4,7 @@ name: SSH Login Every 3 Days
 on:
   schedule:
     - cron: '0 0 */3 * *'  # 每三天的 00:00 触发
+  workflow_dispatch:
 
 jobs:
   ssh-login:
