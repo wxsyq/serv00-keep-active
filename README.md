@@ -6,15 +6,15 @@ It's only use github action, not use any other code (Python, JavaScript, ...)
 ## How to use   [中文说明](./README-cn.md)  
 ### Prepare  
 if you have ssh key pair ( public key file have copyed to the server ) and telegram TOKEN/chat_id, you need not do the step.  
-P1. generate SSH key pair  
+1. generate SSH key pair  
     - use command `ssh-keygen -t rsa -b 4096` to generate RSA key pair. Your key files will be saved in `/home/your_user/.ssh/`, `id_rsa` is private key, `id_rsa_pub` is public key.  
     - use `cat ~/.ssh/id_rsa` and copy the message to your repo secret `SSH_PRIVATE_KEY`.  
     - use `ssh-copy-id username@server_ip` copy the public key file message to your serv00 server.  
-P2. generate telegram bot, get token and chat_id  
+2. generate telegram bot, get token and chat_id  
     - find `@BotFather` in Telegram, creat a new bot and get `BOT_TOKEN`  
     - use `https://api.telegram.org/bot<YourBotToken>/getUpdates` send messge to BOT, you can find `chat_id` in respones JSON (if get NULL JSON, you should send message to the Bot in telegram first and try get chat_id again.)    
 
-
+### Steps
 1. Fork the repo  
 2. your repo `Settings` -> `Secrets and variables` -> `Actions`, `New repository secret`, add secrets:
 
