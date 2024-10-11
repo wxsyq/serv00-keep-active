@@ -17,7 +17,7 @@ It's only use github action, not use any other code (Python, JavaScript, ...)
 3. generate SSH key pair  
     - use command `ssh-keygen -t rsa -b 4096` to generate RSA key pair. Your key files will be saved in `/home/your_user/.ssh/`, `id_rsa` is private key, `id_rsa_pub` is public key.  
     - use `cat ~/.ssh/id_rsa` and copy the message to your repo secret `SSH_PRIVATE_KEY`.  
-    - use `ssh-copy-id username@server_ip` copy the public key file to your serv00 server.  
+    - use `ssh-copy-id username@server_ip` copy the public key file message to your serv00 server.  
 3. generate telegram bot, get token and chat_id  
     - find `@BotFather` in Telegram, creat a new bot and get `BOT_TOKEN`  
     - use `https://api.telegram.org/bot<YourBotToken>/getUpdates` send messge to BOT, you can find `chat_id` in respones JSON (if get NULL JSON, you should send message to the Bot in telegram first and try get chat_id again.)  
