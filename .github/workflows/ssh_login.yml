@@ -13,6 +13,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    
+    - name: Get current time in UTC
+      id: time  # 设置一个ID来存储时间
+      run: echo "TIME=$(date -u '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
 
     - name: Set up SSH
       run: |
@@ -30,11 +34,11 @@ jobs:
       run: |
         curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
           -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-          -d text="✅ SSH login to server was successful!"
+          -d text="UTC ${{ env.TIME }} : ✅ SSH login to server was successful!"
 
     - name: Send Telegram notification on failure
       if: failure()  # 如果 SSH 登录失败
       run: |
         curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
           -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-          -d text="❌ SSH login to server failed!"
+          -d text="UTC ${{ env.TIME }} : ❌ SSH login to server failed!"
