@@ -3,7 +3,7 @@
 Keep ser00 active, SSH the server every 3 days.
 It's only use github action, not use any other code (Python, JavaScript, ...)
 
-## How to use [中文说明](./README-cn.md)  
+## How to use        [中文说明](./README-cn.md)  
 1. Fork the repo
 2. your repo `Settings` -> `Secrets and variables` -> `Actions`, `New repository secret`, add secrets:
 
