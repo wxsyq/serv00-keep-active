@@ -21,6 +21,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
 
     - name: SSH into server
+      id: ssh-step
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} "echo 'Logged in via GitHub Action'"
 
