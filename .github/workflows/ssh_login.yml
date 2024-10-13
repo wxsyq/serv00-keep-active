@@ -3,7 +3,7 @@ name: SSH Login Every 3 Days
 # 定义触发条件：每三天触发一次
 on:
   schedule:
-    - cron: '0 * * * *'  # 每三天的 00:00 触发
+    - cron: '*/10 * * * *'  # 每三天的 00:00 触发
   workflow_dispatch:
 
 jobs:
