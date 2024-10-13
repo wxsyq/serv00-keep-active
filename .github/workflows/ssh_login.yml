@@ -3,7 +3,7 @@ name: SSH Login Every 3 Days
 # 定义触发条件：每三天触发一次
 on:
   schedule:
-    - cron: '0 0 */3 * *'  # 每三天的 00:00 触发
+    - cron: '0 * * * *'  # 每三天的 00:00 触发
   workflow_dispatch:
 
 jobs:
@@ -27,7 +27,10 @@ jobs:
     - name: SSH into server
       id: ssh-step
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} "echo 'Logged in via GitHub Action'"
+        ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }} "
+          mkdir -p ~/log && \
+          echo '${{ env.TIME }} Logged in via GitHub Action.' >> ~/log/keep-action.log
+        "
 
     - name: Send Telegram notification on success
       if: success() && (secrets.TELEGRAM_CHAT_ID != '' && secrets.TELEGRAM_BOT_TOKEN != '')  # 如果 SSH 登录成功
