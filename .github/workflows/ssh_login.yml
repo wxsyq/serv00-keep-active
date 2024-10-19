@@ -42,11 +42,11 @@ jobs:
       run: |
         curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
           -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-          -d text="UTC ${{ env.TIME }} : ✅ SSH login to server was successful!"
+          -d text="UTC ${{ env.TIME }} : ✅ SSH login to server( ${{ secrets.SERVER_IP }} ) was successful!"
 
     - name: Send Telegram notification on failure
       if: failure() && env.TELEGRAM_CHAT_ID != '' && env.TELEGRAM_BOT_TOKEN != ''  # 如果 SSH 登录失败
       run: |
         curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
           -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-          -d text="UTC ${{ env.TIME }} : ❌ SSH login to server failed!"
+          -d text="UTC ${{ env.TIME }} : ❌ SSH login to server( ${{ secrets.SERVER_IP }} ) failed!"
